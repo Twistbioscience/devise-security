@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'compatibility'
+require_relative "compatibility/#{DEVISE_ORM}"
 require_relative "#{DEVISE_ORM}/old_password"
 
 module Devise
@@ -8,7 +8,7 @@ module Devise
     # PasswordArchivable, this depends on the DatabaseAuthenticatable module from devise
     module PasswordArchivable
       extend ActiveSupport::Concern
-      include Devise::Models::Compatibility
+      include "Devise::Models::Compatibility::#{DEVISE_ORM.to_s.classify}".constantize
       include Devise::Models::DatabaseAuthenticatable
 
       included do
