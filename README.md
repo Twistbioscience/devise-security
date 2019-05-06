@@ -186,7 +186,7 @@ create_table :old_passwords do |t|
   t.string :password_salt # Optional. bcrypt stores the salt in the encrypted password field so this column may not be necessary.
   t.datetime :created_at
 end
-add_index :old_passwords, [:password_archivable_type, :password_archivable_id], name: :index_password_archivable
+add_index :old_passwords, [:password_archivable_type, :password_archivable_id], name: 'index_password_archivable'
 ```
 
 ### Session limitable
@@ -319,7 +319,8 @@ Standard tests can be invoked using `rake`.  To run the tests against the `mongo
 
 To locally simulate what travis-ci will run when you push code use:
 
-    $ wwtd
+    $ gem install bundler -v '1.17.3'
+    $ BUNDLER_VERSION=1.17.3 wwtd
 
 ## Copyright
 
